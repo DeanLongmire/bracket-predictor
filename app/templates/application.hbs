@@ -1,5 +1,8 @@
 {{page-title "BracketPredictor"}}
 
-Test
+{{#each @model as |team|}}
+    {{team.teamName}}
+    <br/>
+{{/each}}
 
 {{outlet}}
