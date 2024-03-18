@@ -1,0 +1,14 @@
+{{#if this.roundMatchups}}
+    {{#each this.roundMatchups as |matchup|}}
+        {{#each matchup as |team teamIndex|}}
+            {{team.seed}} {{team.teamName}}
+            {{#if (not-eq teamIndex 1)}}
+                vs
+            {{/if}}
+        {{/each}}
+        <br/>
+    {{/each}}
+{{/if}}
+<button type="button" {{!-- {{action this.simulateRound}} --}} >
+    Simulate {{this.roundName}}
+</button>
