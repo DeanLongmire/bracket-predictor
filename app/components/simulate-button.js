@@ -158,6 +158,7 @@ const allMatchups = [
     thirdRoundMatchups,
     fourthRoundMatchups,
     fifthRoundMatchups,
+    fifthRoundMatchups,
 ];
 
 const teamsPerRound = [64, 32, 16, 8, 4, 2];
@@ -177,10 +178,11 @@ export default class SimulateButtonComponent extends Component {
   @service store;
 
   @tracked allTeams = [];
-  @tracked finalFour = [];
   @tracked roundName = roundNames[0];
   @tracked round = 0;
   @tracked roundMatchups = A();
+  @tracked tournamentWinner;
+  @tracked isOver;
 
   constructor() {
     super(...arguments);
@@ -266,19 +268,26 @@ export default class SimulateButtonComponent extends Component {
     this.round++;
     this.roundName = roundNames[this.round];
     this.roundMatchups.clear();
-    this.createRoundMatchups();
+    if(this.round == 6) {
+        this.tournamentWinner = this.allTeams[0];
+        this.isOver = true;
+    } else {
+        this.createRoundMatchups();
+    }
   }
 
   createRoundMatchups() {
-    for (const team of this.allTeams) {
-        const teamOneSeed = team.seed;
-        const teamRegion = team.region;
+    if(this.round == 4) {
+        this.createFinalFourMatchups();
+    } else if(this.round == 5) {
+        this.roundMatchups.addObject([this.allTeams[0], this.allTeams[1]]);
+    } else {
+        for (const team of this.allTeams) {
+            const teamOneSeed = team.seed;
+            const teamRegion = team.region;
 
-        const possibleMatchups = allMatchups[this.round].filter(tuple => tuple.includes(teamOneSeed));
+            const possibleMatchups = allMatchups[this.round].filter(tuple => tuple.includes(teamOneSeed));
 
-        if(this.round >= 4) {
-            this.createFinalFourMatchups();
-        } else {
             this.findTeam(possibleMatchups, teamOneSeed, teamRegion)
             .then((teamTwo) => {
                 if (!this.roundMatchups.find((matchup) => matchup[0].teamName == team.teamName || matchup[1].teamName == team.teamName)) {
@@ -293,7 +302,13 @@ export default class SimulateButtonComponent extends Component {
   }
 
   createFinalFourMatchups() {
-    
+    const sTeam = this.allTeams.find((team) => team.region === 'south');
+    const mTeam = this.allTeams.find((team) => team.region === 'midwest');
+    const eTeam = this.allTeams.find((team) => team.region === 'east');
+    const wTeam = this.allTeams.find((team) => team.region === 'west');
+
+    this.roundMatchups.pushObject([sTeam, mTeam]);
+    this.roundMatchups.pushObject([eTeam, wTeam]);
   }
 
   findTeam(possibleMatchups, teamOneSeed, teamRegion) {
@@ -320,6 +335,6 @@ export default class SimulateButtonComponent extends Component {
 }
 
   predictUpset(probability) {
-    return Math.random() < probability;
+    return Math.random() <= probability;
   }
 }

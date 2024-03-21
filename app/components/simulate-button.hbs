@@ -1,4 +1,3 @@
-{{#if this.roundMatchups}}
     {{#each this.roundMatchups as |matchup|}}
         {{#each matchup as |team teamIndex|}}
             {{team.seed}} {{team.teamName}}
@@ -8,7 +7,10 @@
         {{/each}}
         <br/>
     {{/each}}
-{{/if}}
 <button type="button" {{action this.simulateRound this.round}}>
     Simulate {{this.roundName}}
 </button>
+{{#if this.isOver}}
+    <br/>
+    {{this.tournamentWinner.teamName}} wins!!!!
+{{/if}}

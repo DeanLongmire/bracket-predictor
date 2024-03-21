@@ -40,7 +40,7 @@
   {"teamName": "Florida", "seed": 7, "region": "south"},
   {"teamName": "Nebraska", "seed": 8, "region": "south"},
   {"teamName": "Texas A&M", "seed": 9, "region": "south"},
-  {"teamName": "Boise St/Colorado", "seed": 10, "region": "south"},
+  {"teamName": "Colorado", "seed": 10, "region": "south"},
   {"teamName": "NC State", "seed": 11, "region": "south"},
   {"teamName": "James Madison", "seed": 12, "region": "south"},
   {"teamName": "Vermont", "seed": 13, "region": "south"},
@@ -56,11 +56,11 @@
   {"teamName": "Texas", "seed": 7, "region": "midwest"},
   {"teamName": "Utah St", "seed": 8, "region": "midwest"},
   {"teamName": "TCU", "seed": 9, "region": "midwest"},
-  {"teamName": "Virginia/Colorado St", "seed": 10, "region": "midwest"},
+  {"teamName": "Colorado St", "seed": 10, "region": "midwest"},
   {"teamName": "Oregon", "seed": 11, "region": "midwest"},
   {"teamName": "McNeese", "seed": 12, "region": "midwest"},
   {"teamName": "Samford", "seed": 13, "region": "midwest"},
   {"teamName": "Akron", "seed": 14, "region": "midwest"},
   {"teamName": "Saint Peter's", "seed": 15, "region": "midwest"},
-  {"teamName": "Montana St/Grambling", "seed": 16, "region": "midwest"}
+  {"teamName": "Grambling", "seed": 16, "region": "midwest"}
 ]
